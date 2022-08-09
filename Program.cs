@@ -38,7 +38,7 @@ public class Program
 		File.Copy(files[fileNumber-1].FullName,
 			  Path.Combine((targetDirectory.FullName,$"копия_{files[i]}")
 			
-		if (i = fileNumber)
+		int i = fileNumber; // присвоили значение без проверки
 		{
 			File.Copy(Path.Combine(path, files[i].FullName), 
 			Path.Combine(path, nameFolder, $"копия_{files[fileNumber-1]}")); 
