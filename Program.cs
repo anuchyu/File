@@ -39,10 +39,29 @@ public class Program
 			  Path.Combine((targetDirectory.FullName,$"копия_{files[i]}")
 			
 		int i = fileNumber; // присвоили значение без проверки
+
+		string pathParent = Path.Combine(path, nameFolder, $"копия_{files[fileNumber-1]}");
+		File.Copy(Path.Combine(path, files[i].FullName),pathParent); 
+		
+		// попытка вставить # и @
+								   
+		string line;
+		StreamReader fileReader = new StreamReader(pathParent);
+		while ((line = fileReader.ReadLine()) != null)
 		{
-			File.Copy(Path.Combine(path, files[i].FullName), 
-			Path.Combine(path, nameFolder, $"копия_{files[fileNumber-1]}")); 
+			int Num;
+			double NumDouble;
+			bool isNum = (int.TryParse(line, out Num) || Double.TryParse(line, out NumDouble));
+			if (isNum)
+			{
+				line = "#" + line;
+			}
+			else
+			{
+				line = "@" + line;
+			}
 		}
+			fileReader.Close();
       		
     }
 }
